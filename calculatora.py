@@ -1,5 +1,6 @@
 import os
 import sys
+import webbrowser # v2
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -15,7 +16,7 @@ def resource_path(relative_path):
 class CalculatoraApp(App):
     def build(self):
         self.icon = resource_path('icon.ico')
-        Window.size = (400, 400)
+        Window.size = (400, 500) # v2
         
         layout = BoxLayout(orientation='vertical', spacing=10, padding=10)
         
@@ -30,7 +31,7 @@ class CalculatoraApp(App):
         self.input_b = TextInput(multiline=False, font_size=24, size_hint=(1, 0.1))
         layout.add_widget(self.input_b)
         
-        operators = ['+', '-', '*', '/']
+        operators = ['+', '-', '*', '/', '%'] # v2
         btn_layout = BoxLayout(spacing=5, size_hint=(1, 0.1))
         
         for op in operators:
@@ -43,6 +44,17 @@ class CalculatoraApp(App):
         clear_btn = Button(text="Reset", font_size=24, size_hint=(1, 0.1))
         clear_btn.bind(on_press=self.reset)
         layout.add_widget(clear_btn)
+
+        # v2
+        self.rally19 = Label(
+            text="[color=00e1ff][ref=https://github.com/rally19/calculatora]Calculatora v2 - rally19[/ref][/u][/color]",
+            font_size=14, size_hint=(1, 0.008), markup=True 
+        )
+        
+        self.rally19.bind(on_ref_press=self.open_link)
+        
+        layout.add_widget(self.rally19)
+        # /v2
         
         return layout
     
@@ -56,7 +68,8 @@ class CalculatoraApp(App):
                 '+': lambda x, y: x + y,
                 '-': lambda x, y: x - y,
                 '*': lambda x, y: x * y,
-                '/': lambda x, y: x / y if y != 0 else "Dibagi nol kagak bisa coy!"
+                '/': lambda x, y: x / y if y != 0 else "Dibagi nol kagak bisa coy!",
+                '%': lambda x, y: (x * y) / 100 # v2
             }
             
             if operator in operations:
@@ -71,6 +84,11 @@ class CalculatoraApp(App):
         self.input_a.text = ""
         self.input_b.text = ""
         self.hasil.text = "Hasil: "
+
+    # v2
+    def open_link(self, instance, url):
+        webbrowser.open(url)
+    # /v2
 
 if __name__ == '__main__':
     CalculatoraApp().run()
