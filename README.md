@@ -1,4 +1,6 @@
 <h1>Calculatora</h1>
 <p>Simple python calculator using Kivy as GUI</p>
 <p>Download it here https://github.com/rally19/calculatora/releases/</p>
-<img width="503" height="543" alt="image" src="https://github.com/user-attachments/assets/83c451fe-4b8e-47c8-ad25-78ffebdb8bbf" />
+<br>
+<h5>v2 Preview</h5>
+<img width="502" height="660" alt="Screenshot 2025-08-28 150016" src="https://github.com/user-attachments/assets/aa6f6e9d-00d2-4e88-abf9-d9f2a05c4eac" />
